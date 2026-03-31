@@ -3,20 +3,20 @@
 ## Background & Skills
 
 **1. Major:**  
-[Your answer here]
+VCD
 
 **2. Design courses completed:**  
-[ ] DESN 100  
-[ ] DESN 200  
-[ ] DESN 216  
-[ ] DESN 243  
+[x] DESN 100  
+[x] DESN 200  
+[x] DESN 216  
+[x] DESN 243  
 [ ] DESN 263  
-[ ] DESN 338  
+[x] DESN 338  
 [ ] None  
-[ ] Other: _______________
+[x] Other: DESN 359
 
 **3. Web experience:**  
-[ ] Never coded  
+[x] Never coded  
 [ ] Viewed source  
 [ ] Modified HTML/CSS  
 [ ] Built websites  
@@ -24,7 +24,7 @@
 
 **4. AI tool experience:**  
 [ ] Never used  
-[ ] ChatGPT occasionally  
+[x] ChatGPT occasionally  
 [ ] Regular AI user  
 [ ] Coding with AI  
 [ ] Not sure what this means
