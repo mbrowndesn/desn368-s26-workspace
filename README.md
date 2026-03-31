@@ -59,7 +59,6 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 - **Workspace Repository:** https://github.com/mbrowndesn/desn368-s26-workspace ⏳
 - **Figma:** https://www.figma.com/files/team/1619464934572241471/user/1590889867214189720?fuid=1590889867214189720 @macybrown ⏳
 - **CodePen:** https://codepen.io/Macy-Brown ⏳
-- **LiveCode:** [Add your LiveCode profile here] ⏳
 - **GitHub Student Pack:** [Confirm approval status here] ⏳
 
 ### **How to Update Your Toolkit:**
