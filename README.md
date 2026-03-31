@@ -65,7 +65,7 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 ### **How to Update Your Toolkit:**
 1. **Click the pencil icon** (✏️) at the top right of this README
 2. Replace the placeholder text with your actual profile information:
-   - Change `[Add your repository URL here]` → `https://github.com/YourUsername/your-repo-name`
+   - Change `https://github.com/mbrowndesn/desn368-s26-workspace` → `https://github.com/YourUsername/your-repo-name`
    - Change `[Add your Figma username here]` → your Figma username
    - Change `[Add your CodePen profile URL here]` → `https://codepen.io/YourUsername`
    - Change `[Confirm approval status here]` → `Approved` or `Pending` for GitHub Pack
