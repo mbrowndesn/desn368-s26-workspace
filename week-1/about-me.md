@@ -88,7 +88,7 @@ VCD
 [ ] Server communication
 
 **13. One thing you hope to create by course end:**  
-I hope to learn how to create and design with code in whatever ways be learn
+I hope to learn how to create and design with code in whatever ways we learn
 
 ---
 *This intake will help me understand your background and tailor the course experience. Feel free to expand on any answers!*
