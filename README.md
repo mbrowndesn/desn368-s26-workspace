@@ -55,7 +55,7 @@ As you complete each tool setup, **come back and update the "My Toolkit" section
 
 ## 🛠️ **My Toolkit**
 *Update these links as you complete each tool setup:*
-- **GitHub Profile:**  ⏳
+- **GitHub Profile:** https://github.com/mbrowndesn ⏳
 - **Workspace Repository:** https://github.com/mbrowndesn/desn368-s26-workspace ⏳
 - **Figma:** [Add your Figma username here] ⏳
 - **CodePen:** [Add your CodePen profile URL here] ⏳
