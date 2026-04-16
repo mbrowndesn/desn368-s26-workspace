@@ -1,6 +1,11 @@
 # 🎉 Welcome to DESN368 CODE + DESIGN ONE!
 Travis Masingale · Spring 2026
 
+# Macy Brown — DESN 368 Portfolio
+
+## About
+I'm a graphic design student at Eastern Washington University expanding into web design and development. This repo holds all my projects, exercises, and experiments from DESN 368.
+
 ---
 
 ## 👤 **Student Information**
@@ -13,21 +18,11 @@ Travis Masingale · Spring 2026
 
 ## 🛠️ **My Toolkit**
 *Update these links as you complete each tool setup:*
-- **GitHub Profile:** https://github.com/mbrowndesn ⏳
-- **Workspace Repository:** https://github.com/mbrowndesn/desn368-s26-workspace ⏳
-- **Figma:** https://www.figma.com/files/team/1619464934572241471/user/1590889867214189720?fuid=1590889867214189720 @macybrown ⏳
-- **CodePen:** https://codepen.io/Macy-Brown ⏳
-- **GitHub Student Pack:** Approved - Awaiting Benefits ⏳
-
-### **How to Update Your Toolkit:**
-1. **Click the pencil icon** (✏️) at the top right of this README
-2. Replace the placeholder text with your actual profile information:
-   - Change `https://github.com/mbrowndesn/desn368-s26-workspace` → `https://github.com/YourUsername/your-repo-name`
-   - Change `[Add your Figma username here]` → your Figma username
-   - Change `[Add your CodePen profile URL here]` → `https://codepen.io/YourUsername`
-   - Change `[Confirm approval status here]` → `Approved` or `Pending` for GitHub Pack
-3. Scroll to bottom and click **"Commit changes"**
-4. Repeat this process each time you complete a new tool setup  
+- **GitHub Profile:** https://github.com/mbrowndesn
+- **Workspace Repository:** https://github.com/mbrowndesn/desn368-s26-workspace
+- **Figma:** https://www.figma.com/files/team/1619464934572241471/user/1590889867214189720?fuid=1590889867214189720 @macybrown
+- **CodePen:** https://codepen.io/Macy-Brown
+- **GitHub Student Pack:** Approved
 
 ---
 
@@ -64,5 +59,3 @@ Travis Masingale · Spring 2026
 - **✉️ Instructor Email:** [tmasingale@ewu.edu](mailto:tmasingale@ewu.edu)
 - **🏢 Office Hours:** Mon/Wed 1–2:30pm, Thurs 1–2pm
 - **📍 Location:** Catalyst Room 167  
-
----
