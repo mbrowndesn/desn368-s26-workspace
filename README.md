@@ -4,7 +4,7 @@ Travis Masingale · Spring 2026
 # Macy Brown — DESN 368 Portfolio
 
 ## About
-I'm a graphic design student at Eastern Washington University expanding into web design and development. This repo holds all my projects, exercises, and experiments from DESN 368.
+I'm a graphic design student at Eastern Washington University exploring web design and development. This repo holds all my projects, exercises, and experiments from DESN 368.
 
 ---
 
