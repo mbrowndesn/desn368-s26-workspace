@@ -43,6 +43,7 @@ Hey! I'm a graphic design student at Eastern Washington University exploring web
 ---
 
 ## 🔗 **Course Resources**
+### **course page** [course page](https://mbrowndesn.github.io/desn368-s26-workspace/)
 ### **Primary Course Hub**
 - **📌 Milanote Course Home** - [Course board with assignments & resources](https://app.milanote.com/1W6e931MhvTVaN?p=1kaC1j7112i)
 
