@@ -50,21 +50,25 @@ h2 {
     color: black
 }
 
+#timeline {
+    margin 40px;
+}
+
 .timeline-entry {
     background-color: #d4d4d4;
-    border-radius: 8px;
+    border-radius: 5px;
     padding: 5px 25px;
     margin-bottom: 30px;
 }
 
- h2.timeline-entry {
+ p.p-date {
     font-style: italic;
     font-weight: normal;
-    font-size: 2em;
-    margin: 0 0 15px 0;
+    font-size: 1.3em;
+    margin: 10px 0 0 0;
   }
 
-  p.timeline-entry {
+  p.p-info {
     font-size: .8em;
     line-height: 1.8;
-    margin: 0;
+    margin: 5px 0 10px 0;
