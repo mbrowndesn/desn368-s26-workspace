@@ -12,7 +12,8 @@ body {
     text-align: center;
     font-size: 0.75em;
     letter-spacing: 0.3em;
-    margin
+    margin-top: 5px;
+    font-family: 'helvetica', sans-serif;
 }
 
     h1 {
