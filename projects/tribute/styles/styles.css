@@ -49,3 +49,7 @@ h2 {
     font-size: 2em;
     color: black
 }
+
+.p-date p-info {
+    background-color: lightgrey;
+}
