@@ -61,14 +61,14 @@ body {
     margin-bottom: 30px;
 }
 
-     p.p-date {
+    p.p-date {
     font-style: italic;
     font-weight: normal;
     font-size: 1.3em;
     margin: 10px 0 0 0;
   }
 
-     p.p-info {
+    p.p-info {
     font-size: .8em;
     line-height: 1.8;
     margin: 5px 0 20px 0;
