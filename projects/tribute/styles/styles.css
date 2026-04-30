@@ -78,7 +78,7 @@ body {
     line-height: 1.8;
     margin: 3px 0 25px 0;
 
-    .p-award {
+    p.p-award {
     background-color: #0492AB;
     border-radius: 5px;
     padding: 12px 28px;
