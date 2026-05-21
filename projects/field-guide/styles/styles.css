@@ -47,6 +47,7 @@ body {
   color: #464E29;
   text-decoration: none;
   padding: 0.5em 1em;
+  line-height: 2.2em;
 }
 
 .logo {
@@ -55,16 +56,24 @@ body {
   line-height: 1;
   color: #fff;
   text-transform: uppercase;
+  padding: 0.5em 0.5em 0em;
 }
 
 .field-guide {
   font-family: "Patrick Hand", cursive;
   color: #f4efe2;
   letter-spacing: 0.08em;
-  margin-top: 12px;
+  margin-top: 2px;
+  padding: 0.5em 1em;
 }
 
-
+.line {
+  border: none;
+  border-top: 2px solid #cd7b40;
+  margin: 30px 0 30px;
+  width: 100px;
+  padding-left: 0.5em;
+}
 
 
 
