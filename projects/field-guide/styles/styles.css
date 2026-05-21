@@ -3,6 +3,8 @@ body {
   font-size: 16px;
   margin: 0 0 0 0;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .sigmar-one-regular {
@@ -11,17 +13,18 @@ body {
   font-style: normal;
 }
 
-nav {
-  order: -1; 
-  background-color: #000;
+.sidebar {
+  background-color: #BFA574;
   padding: 0.5em;
   width: 200px;
+  top: 0;
+  left: 0;
   align-self: flex-start;
   position: fixed;
-  height: 400px; 
+  height: 100vh;
 }
 
-nav ul {
+.sidebar ul {
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -29,10 +32,18 @@ nav ul {
   list-style: none;
 }
 
-nav a {
-  color: white;
+.sidebar a {
+  color: #464E29;
   text-decoration: none;
   padding: 0.5em 1em;
+}
+
+.logo {
+  font-family: "Sigmar One", sans-serif; 
+  font-size: 2em;
+  line-height: 1;
+  color: #f4efe2;
+  text-transform: uppercase;
 }
 
 .big-title {
@@ -41,4 +52,13 @@ nav a {
   text-transform: uppercase;
   font-weight: bold;
   font-family: "Sigmar One", sans-serif; 
+  padding: 50px 20px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  margin-left: 220px;
+}
+
+main {
+  margin-left: 220px; 
 }
