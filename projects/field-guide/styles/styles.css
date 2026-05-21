@@ -45,6 +45,7 @@ body {
 .sidebar a {
   font-family: "Patrick Hand", cursive;
   color: #464E29;
+  font-weight: light;
   text-decoration: none;
   padding: 0.5em 1em;
   line-height: 2.2em;
@@ -79,7 +80,7 @@ body {
 
 
 .big-title {
-  font-size: 4em;
+  font-size: 6em;
   line-height: 0.82;
   text-transform: uppercase;
   font-weight: bold;
@@ -89,6 +90,16 @@ body {
   text-align: center;
   width: 100%;
   margin-left: 220px;
+}
+
+.intro {
+  font-family: "Patrick Hand", cursive;
+  color: #BFA574;
+  font-weight: light;
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin: 20px 0;
+  letter-spacing: 0.05em;
 }
 
 main {
