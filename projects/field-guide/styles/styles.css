@@ -1,10 +1,23 @@
+html {
+  font-size: 100%;
+}
+
+@media (max-width: 600px) {
+  html { font-size: 87.5%; }
+}
+
+@media (min-width: 1200px) {
+  html { font-size: 112.5%; }
+}
+
 body {
+  margin: 0;
+}
+
+.full-width-container {
   background-color: #464E29;
-  font-size: 16px;
-  margin: 0 0 0 0;
+  font-size: 1rem;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .sigmar-one-regular {
@@ -26,7 +39,7 @@ body {
 .sidebar {
   background-color: #BFA574;
   padding: 0.5em;
-  width: 200px;
+  width: 12.5rem;
   top: 0;
   left: 0;
   align-self: flex-start;
@@ -35,6 +48,7 @@ body {
 }
 
 .sidebar ul {
+  flex: 0 0 18.75rem;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -70,9 +84,9 @@ body {
 
 .line {
   border: none;
-  border-top: 2px solid #cd7b40;
-  margin: 30px 0 30px;
-  width: 100px;
+  border-top: 0.125rem solid #cd7b40;
+  margin: 1.875rem 0 1.875rem;
+  width: 6.25rem;
   padding-left: 0.5em;
 }
 
@@ -81,33 +95,65 @@ body {
 
 .big-title {
   font-size: 6em;
-  line-height: 0.82;
+  line-height: 0.95;
   text-transform: uppercase;
   font-weight: bold;
   font-family: "Sigmar One", sans-serif; 
-  padding: 50px 20px;
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
+  padding: 0;
+  margin: 4rem 0 0 0;
+  margin-bottom: 0;
+  text-align: left;
+  width: auto;
 }
 
 .intro {
   font-family: "Patrick Hand", cursive;
   color: #BFA574;
   font-weight: light;
-  font-size: 1.2em;
+  font-size: 1em;
   line-height: 1.6;
-  margin: 20px 0;
+  margin: 1rem 2rem;
   letter-spacing: 0.05em;
 }
 
-img {
+header {
   display: flex;
-  width: 600px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1.25rem 0.5rem;
+}
+
+header,
+main {
+  margin-left: 13.5rem;
+}
+
+.floating-image {
+  position: absolute;
+  left: 45rem;
+  top: 18vh;
+  width: 35rem;
   height: auto;
-  gap: 4rem;
+}
+
+.button {
+  font-family: "Patrick Hand", cursive;
+  font-weight: light;
+  padding: 0.8rem 1rem;
+  background-color: #cd7b40;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 7rem;
+  text-align: center;
+  margin: 3.5rem 2rem;
+}
+
+#section-1 {
+  background: #cd7b40;
+  padding: 3.75rem; 
 }
 
 main {
-  margin-left: 250px; 
+
 }
