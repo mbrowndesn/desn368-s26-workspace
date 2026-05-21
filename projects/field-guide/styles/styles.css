@@ -13,6 +13,16 @@ body {
   font-style: normal;
 }
 
+.patrick-hand-regular {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ---------------------------------------------
+------------------NAV BAR-----------------------
+----------------------------------------------*/
+
 .sidebar {
   background-color: #BFA574;
   padding: 0.5em;
@@ -33,6 +43,7 @@ body {
 }
 
 .sidebar a {
+  font-family: "Patrick Hand", cursive;
   color: #464E29;
   text-decoration: none;
   padding: 0.5em 1em;
@@ -42,9 +53,21 @@ body {
   font-family: "Sigmar One", sans-serif; 
   font-size: 2em;
   line-height: 1;
-  color: #f4efe2;
+  color: #fff;
   text-transform: uppercase;
 }
+
+.field-guide {
+  font-family: "Patrick Hand", cursive;
+  color: #f4efe2;
+  letter-spacing: 0.08em;
+  margin-top: 12px;
+}
+
+
+
+
+
 
 .big-title {
   font-size: 4em;
