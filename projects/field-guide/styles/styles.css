@@ -91,8 +91,6 @@ body {
 }
 
 
-
-
 .big-title {
   font-size: 6em;
   line-height: 0.95;
@@ -114,13 +112,15 @@ body {
   line-height: 1.6;
   margin: 1rem 2rem;
   letter-spacing: 0.05em;
+  padding-left: 2.4rem;
+  max-width: 34rem;
 }
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 1.25rem 0.5rem;
+  padding: 2rem 1.25rem 0.5rem 4rem;
 }
 
 header,
@@ -130,10 +130,23 @@ main {
 
 .floating-image {
   position: absolute;
-  left: 45rem;
-  top: 18vh;
-  width: 35rem;
+  bottom: -3.9rem;
+  right: 2.5rem;
+  width: 40%;
+  max-width: 35rem;
   height: auto;
+}
+
+@media (max-width: 900px) {
+  #section-1 {
+    flex-direction: column;
+  }
+  .why-photo {
+    width: 100%;
+  }
+  .floating-image {
+    display: none;
+  }
 }
 
 .button {
@@ -146,14 +159,98 @@ main {
   cursor: pointer;
   width: 7rem;
   text-align: center;
-  margin: 3.5rem 2rem;
+  margin: 3.5rem 2rem 3.5rem 4.4rem;
+}
+
+.hero-green {
+  position: relative;
 }
 
 #section-1 {
   background: #cd7b40;
   padding: 3.75rem; 
+  display: flex;
+  gap: 2rem; 
+  align-items: flex-end;
 }
 
-main {
+.para-1 {
+  font-family: "Patrick Hand", cursive;
+  color: #fff;
+  font-weight: light;
+  font-size: 1.125em;
+  line-height: 1.8;
+  margin: 0 0 1.25rem 0;
+  max-width: 35rem;
+  flex: 1; 
+}
 
+.para-2 {
+  font-family: "Patrick Hand", cursive;
+  color: #fff;
+  font-weight: light;
+  font-size: 1.125em;
+  line-height: 1.8;
+  margin: 0;
+  max-width: 35rem;
+  flex: 1; 
+}
+
+.section-title {
+  font-family: "Patrick Hand", cursive;
+  color: #fff;
+  font-weight: light;
+  font-size: 2em;
+  line-height: 1.8;
+  margin: 0 0 1.5rem 0;
+}
+
+.section-line-1 {
+  border: none;
+  border-top: 0.125rem solid #464E29;
+  margin: 1.875rem 0 1.875rem;
+  width: 8rem;
+  padding-left: 0.5em;
+}
+
+.section-photo {
+  width: 18rem;
+  max-width: 25rem;
+  height: auto;
+}
+
+.section-text {
+  flex: 1;
+}
+
+#section-2 {
+  background: #464E29;
+  padding: 3.75rem; 
+  display: flex;
+  gap: 2rem; 
+  align-items: flex-end;
+}
+
+.section-line-2 {
+  border: none;
+  border-top: 0.125rem solid #cd7b40;
+  margin: 1.875rem 0 1.875rem;
+  width: 8rem;
+  padding-left: 0.5em;
+}
+
+#section-3, #section-5, #section-7 {
+  background: #cd7b40;
+  padding: 3.75rem; 
+  display: flex;
+  gap: 2rem; 
+  align-items: flex-end;
+}
+
+#section-4, #section-6 {
+  background: #464E29;
+  padding: 3.75rem; 
+  display: flex;
+  gap: 2rem; 
+  align-items: flex-end;
 }
