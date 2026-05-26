@@ -254,3 +254,54 @@ main {
   gap: 2rem; 
   align-items: flex-end;
 }
+
+.menu-checkbox {
+  display: none;
+}
+
+.menu-button {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 20;
+  font-size: 1.5rem;
+  background: #BFA574;
+  color: #464E29;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+
+  @media (max-width: 900px) {
+
+  .menu-button {
+    display: block;
+  }
+
+  .sidebar {
+    left: -13.5rem;
+    transition: left 0.3s;
+  }
+
+  .menu-checkbox:checked ~ .sidebar {
+    left: 0;
+    z-index: 15;
+  }
+
+  header,
+  main {
+    margin-left: 0;
+  }
+
+  .big-title {
+    font-size: 3.5em;
+  }
+
+  #section-1,
+  #section-2 {
+    flex-direction: column;
+  }
+
+  .why-photo {
+    width: 100%;
+  }
+}
