@@ -56,7 +56,7 @@
             <p class="cs-question">What was difficult to code? How did you solve it?</p>
           </div>
           <div class="cs-right">
-            <p class="para-1">Figuring out the two column layout using flexbox and alignment was definitely tricky at first and I had to test out and redo a lot of sections learning how to do it along the way. It seemed like it was impossible to align items the way that I had in my figma design but it just took trial and error to figure it out. Adding in the mobile layout into the css was also a bit tricky.</p>
+            <p class="para-1">The biggest challenge was getting the mountain silhouette to sit exactly on the green/orange seam, with its base resting on top of the orange section. It always seemed to sink to far down or float too far up, but through multiple attempts and help I was able to fix it. The other tricky moment was figuring out why a new section I added merged into a previous one. It turned out I had a missing closing div tag.</p>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
             <p class="cs-question">How did you adapt your design for mobile?</p>
           </div>
           <div class="cs-right">
-            <p class="para-1">The central responsive challenge was the sidebar. A fixed sidebar works beautifully on desktop but consumes too much screen space on mobile. My solution was to slide it off-screen by default and animate it back into view when the hamburger is checked. This preserves the sidebar's visual identity while keeping it out of the way until needed.</p>
+            <p class="para-1">I built the desktop layout first, then added in the mobile layout by using media queries for smaller screens. On mobile the fixed nav menu hides behind a pop out hamburger menu. </p>
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@
             <p class="cs-question">What did you learn about Flexbox or CSS positioning?</p>
           </div>
           <div class="cs-right">
-            <p class="para-1">Flexbox was the single biggest conceptual leap in this project. Early on I kept trying to style flex items directly to achieve layout effects that only work on the flex container. Understanding that properties like justify-content and align-items live on the parent — and that flex children are controlled by that parent — completely changed how I approach layout problems.</p>
+            <p class="para-1">I learned that position: fixed pins something to the screen no matter how you scroll, but it lifts the element out of the normal page flow, which is why I had to add margin-left: 13.5rem to push everything else over to clear it. For Flexbox, I learned that flex: 1 makes an item grow to fill the leftover space, which I used to make the article text take up the room next to a fixed-width photo.</p>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
             <p class="cs-question">What would you add or change with more time?</p>
           </div>
           <div class="cs-right">
-            <p class="para-1">The most meaningful improvement would be scroll-triggered animations. Right now the page loads statically — sections simply exist. With more time I would explore ways to have each section fade in as the user scrolls to it, making the experience feel more like turning pages in a real field guide. The content deserves that kind of pacing.</p>
+            <p class="para-1">For future improvements, I would love to add in scrolling animations and more distinct sections for better navigation and readability. I would also love to experiment with more bold design choices including backgrounds, icons, more fonts, etc.</p>
           </div>
         </div>
       </div>
