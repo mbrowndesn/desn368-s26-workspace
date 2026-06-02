@@ -1,5 +1,28 @@
+header,
+main,
+footer {
+  margin-left: 0;
+}
+
+.back-btn {
+  font-family: "Patrick Hand";
+  background-color: #cd7b40;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  display: inline-block;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  margin-right: 3rem;
+}
+
+.back-btn:hover {
+  background-color: #b5652e;
+}
+
 .cs-hero {
-  padding: 3rem 4rem 3rem 4.4rem;
+  padding: 3rem 4rem;
   background-color: #464E29;
 }
 
@@ -13,64 +36,44 @@
   margin: 0;
 }
 
-/* === CASE STUDY SECTIONS === */
 #design-decisions,
 #technical-challenges,
 #responsive-strategy,
 #learning-moments,
 #future-improvements {
-  padding: 3.75rem;
-  display: flex;
-  gap: 2rem;
-  align-items: flex-end;
-}
-
-#design-decisions,
-#responsive-strategy,
-#future-improvements {
-  background: #cd7b40;
-}
-
-#technical-challenges,
-#learning-moments {
   background: #464E29;
+  padding: 4rem;
+  border-top: 1px solid #5a6433;
 }
 
-/* === QUESTION PROMPT === */
+.cs-section-inner {
+  display: flex;
+  gap: 4rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.cs-left {
+  flex: 0 0 16rem;
+}
+
+.cs-right {
+  flex: 1;
+}
+
+.cs-right .para-1 {
+  margin: 0;
+}
+
 .cs-question {
   font-family: "Patrick Hand";
-  color: #f4efe2;
+  color: #BFA574;
   font-style: italic;
   font-size: 1em;
-  margin: 0 0 1.25rem 0;
+  margin: 0;
 }
 
-/* === THIRD PARAGRAPH === */
-.para-3 {
-  font-family: "Patrick Hand";
-  color: #fff;
-  font-size: 1.125em;
-  line-height: 1.8;
-  margin: 1.25rem 0 0 0;
-  max-width: 35rem;
-}
-
-/* === BACK LINK IN SIDEBAR === */
-.back-link {
-  font-family: "Patrick Hand";
-  color: #cd7b40;
-  text-decoration: none;
-  padding: 0.5em 1em;
-  display: block;
-  font-size: 0.95em;
-  margin-bottom: 0.25rem;
-}
-
-.back-link:hover {
-  color: #fff;
-}
-
-/* === RESPONSIVE === */
 @media (max-width: 900px) {
   .cs-hero {
     padding: 2rem 1.5rem;
@@ -81,6 +84,19 @@
   #responsive-strategy,
   #learning-moments,
   #future-improvements {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .cs-section-inner {
     flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cs-left {
+    flex: unset;
+  }
+
+  .back-btn {
+    margin-right: 1rem;
   }
 }
