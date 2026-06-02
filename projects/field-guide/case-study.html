@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="my-favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="my-favicon/favicon.svg" />
+  <link rel="shortcut icon" href="my-favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="my-favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="my-favicon/site.webmanifest" />
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study — Base Camp</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/case-study.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Patrick+Hand&family=Sigmar+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="full-width-container">
+
+    <header>
+      <h1 class="big-title">
+        <span style="color:#fff; display:block;">Base</span>
+        <span style="color:#cd7b40; display:block;">Camp</span>
+      </h1>
+    </header>
+
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <label for="menu-toggle" class="menu-button">☰</label>
+
+    <nav class="sidebar">
+      <div class="logo">Base<br>Camp</div>
+      <p class="field-guide">CASE STUDY — 2026</p>
+      <hr class="line">
+      <a href="index.html" class="back-link">← Back to Guide</a>
+      <ul>
+        <li><a href="#design-decisions">Design Decisions</a></li>
+        <li><a href="#technical-challenges">Technical Challenges</a></li>
+        <li><a href="#responsive-strategy">Responsive Strategy</a></li>
+        <li><a href="#learning-moments">Learning Moments</a></li>
+        <li><a href="#future-improvements">Future Improvements</a></li>
+      </ul>
+    </nav>
+
+    <main>
+
+      <div class="cs-hero">
+        <p class="cs-intro">A reflection on the design and development process behind Base Camp — a responsive field guide built for DESN368.</p>
+      </div>
+
+      <div id="design-decisions">
+        <div class="section-text">
+          <h2 class="section-title">Design Decisions</h2>
+          <hr class="section-line-1">
+          <p class="cs-question">What design choices did you make and why?</p>
+          <p class="para-1">The color palette — dark olive green, warm amber, and tan — was chosen to evoke the natural, grounded feeling of being outdoors. I wanted every design choice to feel like it belonged in the wilderness: earthy, deliberate, and unhurried. Bright or saturated colors would have felt wrong for a camping guide; these tones feel lived-in and honest.</p>
+          <p class="para-2">The font pairing was equally intentional. Sigmar One for the display title brings a bold, rugged character that reads as adventurous without being loud. Patrick Hand was chosen for body text because its handwritten quality gives the guide the feeling of actual field notes — something a seasoned camper might have scrawled in a journal. Together they balance authority with warmth.</p>
+          <p class="para-3">Alternating section backgrounds between amber and dark green create a clear visual rhythm that helps readers track their position in the guide. This pattern also solves a practical problem: long single-page sites can feel monotonous. The alternation breaks the content into digestible chapters with distinct visual identities.</p>
+        </div>
+        <img class="section-photo" src="images/7.png" alt="campsite reference image">
+      </div>
+
+      <div id="technical-challenges">
+        <div class="section-text">
+          <h2 class="section-title">Technical Challenges</h2>
+          <hr class="section-line-2">
+          <p class="cs-question">What was difficult to code? How did you solve it?</p>
+          <p class="para-1">The most challenging piece was the CSS-only hamburger menu. Using a hidden checkbox input paired with a label and a sibling CSS selector to toggle the sidebar on mobile was an entirely new pattern. Getting the specificity right — and ensuring the sidebar animated in and out — took significant trial and error. The breakthrough was understanding that CSS can only select forward siblings, which shaped how I had to structure the HTML.</p>
+          <p class="para-2">The fixed sidebar offset was another stumbling block. Because the sidebar uses position: fixed, it is removed from the document's normal flow — meaning the header and main content have no awareness it exists. To prevent content from sliding behind it, both the header and main needed an explicit margin-left equal to the sidebar's width. Understanding this pattern was a key moment in how I think about CSS positioning.</p>
+        </div>
+        <img class="section-photo" src="images/5.png" alt="campsite reference image">
+      </div>
+
+      <div id="responsive-strategy">
+        <div class="section-text">
+          <h2 class="section-title">Responsive Strategy</h2>
+          <hr class="section-line-1">
+          <p class="cs-question">How did you adapt your design for mobile?</p>
+          <p class="para-1">The central responsive challenge was the sidebar. A fixed sidebar works beautifully on desktop but consumes too much screen space on mobile. My solution was to slide it off-screen by default and animate it back into view when the hamburger is checked. This preserves the sidebar's visual identity while keeping it out of the way until needed.</p>
+          <p class="para-2">At the 900px breakpoint, all section layouts switch from flex-direction: row to flex-direction: column. Section photos that sit beside text on desktop stack below their paragraphs on mobile and expand to full width. The margin-left offset on the header and main is removed entirely so content fills the screen edge to edge.</p>
+          <p class="para-3">Typography scales through a three-step system: the base html font-size drops at 600px and rises above 1200px. Because all type sizes are set in em units, this single change cascades consistently across every text element without requiring dozens of individual media query overrides.</p>
+        </div>
+        <img class="section-photo" src="images/3.png" alt="gear reference image">
+      </div>
+
+      <div id="learning-moments">
+        <div class="section-text">
+          <h2 class="section-title">Learning Moments</h2>
+          <hr class="section-line-2">
+          <p class="cs-question">What did you learn about Flexbox or CSS positioning?</p>
+          <p class="para-1">Flexbox was the single biggest conceptual leap in this project. Early on I kept trying to style flex items directly to achieve layout effects that only work on the flex container. Understanding that properties like justify-content and align-items live on the parent — and that flex children are controlled by that parent — completely changed how I approach layout problems.</p>
+          <p class="para-2">The position: relative and position: absolute relationship was equally clarifying. Before this project I used absolute positioning mostly by accident. Building the hero section's floating mountain image taught me that absolutely positioned elements escape normal flow and anchor to the nearest positioned ancestor. Once I understood that rule, the whole system felt logical rather than arbitrary.</p>
+        </div>
+        <img class="section-photo" src="images/2.png" alt="campsite reference image">
+      </div>
+
+      <div id="future-improvements">
+        <div class="section-text">
+          <h2 class="section-title">Future Improvements</h2>
+          <hr class="section-line-1">
+          <p class="cs-question">What would you add or change with more time?</p>
+          <p class="para-1">The most meaningful improvement would be scroll-triggered animations. Right now the page loads statically — sections simply exist. With more time I would explore ways to have each section fade in as the user scrolls to it, making the experience feel more like turning pages in a real field guide. The content deserves that kind of pacing.</p>
+          <p class="para-2">The mobile hamburger menu currently stays open when a user taps a navigation link, requiring a second tap to close it. This is a small friction point I would fix. I would also revisit the hero section on smaller screens — the floating mountain image loses its impact when stacked linearly, and a different approach would serve mobile better.</p>
+          <p class="para-3">Finally, I would organize the CSS more carefully. Managing three brand colors across dozens of selectors was tedious and easy to get wrong. A more structured approach to the stylesheet would make future changes much easier and bring the code closer to what is used in professional development.</p>
+        </div>
+        <img class="section-photo" src="images/6.png" alt="night sky reference image">
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-buttons">
+          <a href="index.html" class="footer-btn">← Back to Guide</a>
+          <a href="#" class="footer-btn">View Portfolio</a>
+        </div>
+        <div class="footer-copy">
+          <p class="footer-copy-main">© 2026 Macy Brown | Base Camp: A Beginner's Camping Handbook</p>
+          <p class="footer-copy-sub">Created by Macy Brown for DESN368 · Spring 2026. Content developed with AI assistance. Imagery from Pinterest.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
