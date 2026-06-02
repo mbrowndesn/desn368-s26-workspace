@@ -58,6 +58,19 @@ section {
   position: relative;
 }
 
+.deco {
+    position: absolute;
+    pointer-events: none;
+}
+
+.deco img {
+    width: 150px;
+    height: auto;
+    opacity: 0.15;
+    filter: grayscale(100%);
+}
+
+
 /* Make .container a flex container.
    Give .sidebar a fixed 300px width that won't grow or shrink.
    Let .content grow to fill the remaining space. */
