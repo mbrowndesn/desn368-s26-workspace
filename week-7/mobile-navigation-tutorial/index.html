@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Navigation Tutorial</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Mobile Nav</div>
+    <button class="menu-toggle" aria-label="Open navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <h1>Mobile Navigation Tutorial</h1>
+      <p>Learn how to build a responsive mobile navigation menu with HTML, CSS, and responsive layout.</p>
+    </section>
+
+    <section class="content" id="features">
+      <h2>Responsive Design</h2>
+      <p>The navigation menu adapts for smaller screens with a toggle button and a clean mobile layout.</p>
+    </section>
+
+    <section class="content" id="pricing">
+      <h2>Navigation Patterns</h2>
+      <p>Display your navigation links prominently while keeping the mobile experience simple and accessible.</p>
+    </section>
+
+    <section class="content" id="contact">
+      <h2>Get Started</h2>
+      <p>Use this starter template to build mobile-first navigation for your own projects.</p>
+    </section>
+  </main>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.main-nav');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+    });
+  </script>
+</body>
+</html>
