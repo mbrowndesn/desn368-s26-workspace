@@ -28,10 +28,10 @@
 
 | Project | Description | Live Site |
 | --- | --- | --- |
-| The Recipe | A clean, appetizing recipe page for classic blueberry muffins | [View →](archive/week-4/recipe-in-style/recipe-in-style.html) |
-| Tribute Site | A cinematic tribute to filmmaker Christopher Nolan | [View →](archive/projects/tribute/tribute.html) |
-| Field Guide | A practical field guide to camping essentials | [View →](archive/projects/field-guide/index.html) |
-| Product Landing Page | A landing page for Cotopaxi's Del Día packs and their color-blocked design | [View →](archive/projects/cotopaxi-product-site/index.html) |
+| The Recipe | A clean, appetizing recipe page for classic blueberry muffins | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/archive/week-4/recipe-in-style/recipe-in-style.html) |
+| Tribute Site | A cinematic tribute to filmmaker Christopher Nolan | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/archive/projects/tribute/tribute.html) |
+| Field Guide | A practical field guide to camping essentials | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/archive/projects/field-guide/index.html) |
+| Product Landing Page | A landing page for Cotopaxi's Del Día packs and their color-blocked design | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/archive/projects/cotopaxi-product-site/index.html) |
 
 ---
 
