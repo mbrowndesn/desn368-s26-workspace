@@ -206,7 +206,7 @@ a:active  { opacity: .5; }
   min-height: 0;
   display: flex;
   align-items: center;
-  padding: 3.5rem var(--pad-x) 4rem;
+  padding: 3.5rem 0 4rem;
   overflow: hidden;
 }
 
@@ -242,6 +242,7 @@ a:active  { opacity: .5; }
   max-width: var(--max-w);
   margin: 0 auto;
   width: 100%;
+  padding: 0 var(--pad-x);
 }
 
 .hero-eyebrow {
@@ -701,7 +702,7 @@ a:active  { opacity: .5; }
   .nav-links { gap: 1.25rem; }
   .nav-links a { font-size: .75rem; }
 
-  .hero { padding: 3rem var(--pad-x); }
+ .hero { padding: 3rem 0; }
   .hero-name-indent { padding-left: 1.5rem; }
   .hero-divider { width: 80%; }
 
