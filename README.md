@@ -1,46 +1,82 @@
-Macy Brown — Web Design Portfolio
-Code + Design 1 · Fall 2025 · Eastern Washington University · Instructor: Travis Masingale
+# Macy Brown — DESN368 Portfolio
 
-About This Repository
-This repository documents my journey through DESN368, where I learned to build for the web with HTML and CSS—understanding how the web actually works at the source level.
+**Macy Brown** · Code + Design 1 · Spring 2026 · Eastern Washington University · Instructor: Travis Masingale
 
-View Live Portfolio -->
-View Learning Log --> — Weekly progress & exercises
+---
 
-Design Direction
-For my portfolio, I pursued a [describe your vibe in 2-3 words] aesthetic.
+🌐 **[View Live Portfolio](https://mbrowndesn.github.io/desn368-s26-workspace/)** &nbsp;·&nbsp; 📓 **[View Learning Log](https://mbrowndesn.github.io/desn368-s26-workspace/learning-log.html)** — weekly progress & exercises
 
-Element	Choice
-Header Font	[Font Name]
-Body Font	[Font Name]
-Primary Color	#000000
-Accent Color	#000000
-Background	#000000
-View Figma FileLinks to an external site.
+---
 
-Featured Projects
-Project	Description	Live Site	Process
-The Recipe	[1-sentence description]	View →	Figma
-Tribute Site	[1-sentence description]	View →	Figma
-Field Guide	[1-sentence description]	View →	Figma
-Product Landing Page	[1-sentence description]	View →	Figma
-Technical Skills Demonstrated
-Semantic HTML5 (<header>, <main>, <section>, <article>, <footer>)
-CSS Layout (Flexbox / Grid)
-Responsive Design with @media queries
-CSS Custom Properties (variables)
-CSS Transitions for interaction
-Version Control with Git & GitHub
-Archive
-Course Log — Detailed weekly documentation
-Learning Log — Index of all exercises and projects
-Credits & Citations
-Assets
-[List any images, icons, or assets you didn't create]
-Tutorials & Resources
-[Any tutorials or Stack Overflow threads that helped]
-AI Assistance
-[If used: "Used Claude for debugging CSS grid in Week 6"]
-[If none: "No AI assistance used"]
-Reflection
-→ Read Full Reflection on Portfolio SiteLinks to an external site.
+## Design Direction
+
+**Risograph scrapbook** — warm cream base, hot pink and orange duotone palette, grain texture overlay, collage-style layout with slight card rotations and springy scroll entrances. Inspired by riso prints and punk zine culture.
+
+| Element | Choice |
+| --- | --- |
+| Display Font | [Bebas Neue](https://fonts.google.com/specimen/Bebas+Neue) |
+| Body Font | [DM Sans](https://fonts.google.com/specimen/DM+Sans) |
+| Pink | `#FF6BAD` |
+| Orange | `#FF9246` |
+| Yellow | `#FFD023` |
+| Background | `#FBF5EC` |
+
+---
+
+## Featured Projects
+
+| Project | Description | Live Site |
+| --- | --- | --- |
+| The Recipe | A clean, appetizing recipe page for classic blueberry muffins | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/week-2/recipe.html) |
+| Tribute Site | A cinematic tribute to filmmaker Christopher Nolan | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/projects/tribute/tribute.html) |
+| Field Guide | A practical field guide to camping essentials | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/projects/field-guide/index.html) |
+| Product Landing Page | A landing page for Cotopaxi's Del Día packs and their color-blocked design | [View →](https://mbrowndesn.github.io/desn368-s26-workspace/projects/cotopaxi-product-site/index.html) |
+
+---
+
+## Technical Skills Demonstrated
+
+- Semantic HTML5 (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`)
+- CSS Layout (Flexbox + Grid)
+- Responsive Design with `@media` queries
+- CSS Custom Properties (variables)
+- CSS Transitions & animations
+- Vanilla JavaScript — IntersectionObserver API for scroll animations
+- Version Control with Git & GitHub
+
+---
+
+## File Structure
+
+```
+portfolio-2/
+├── index.html              Portfolio home
+├── reflection.html         End-of-quarter reflection
+├── learning-log.html       Weekly project log
+├── css/
+│   └── style.css           Full design system
+├── images/                 Project thumbnails, about photo, favicon
+├── archive/course-log.md   Old course README
+└── CHECKLIST.md            Self-assessment checklist
+```
+
+---
+
+## Credits & Citations
+
+**Fonts**
+- [Bebas Neue](https://fonts.google.com/specimen/Bebas+Neue) — Google Fonts / Dharma Type
+- [DM Sans](https://fonts.google.com/specimen/DM+Sans) — Google Fonts / Colophon Foundry
+
+**AI Assistance**
+- Portfolio built in collaboration with [Claude](https://claude.ai) (Anthropic) — assisted with HTML structure, CSS architecture, and JavaScript for scroll animations. All written content (bio, reflection, project descriptions) written by Macy Brown. AI use disclosed in site footer per course requirements.
+
+---
+
+## Reflection
+
+✍️ **[Read Full Reflection](https://mbrowndesn.github.io/desn368-s26-workspace/reflection.html)**
+
+---
+
+*© 2026 Macy Brown. Built for DESN368 at Eastern Washington University.*
