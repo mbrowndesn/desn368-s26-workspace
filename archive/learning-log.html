@@ -1,77 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>macy's desn368 journey</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any">
-    <link rel="shortcut icon" href="favicon.svg">
-    <link rel="stylesheet" href="styles/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Log — Macy Brown DESN368</title>
+  <meta name="description" content="Weekly learning log for Macy Brown, DESN368 at Eastern Washington University.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .log-section {
+      padding: 3.5rem 0 5rem;
+      position: relative;
+    }
+    .log-section::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 240px; height: 240px;
+      background-image: radial-gradient(var(--color-pink) 1.5px, transparent 1.5px);
+      background-size: 18px 18px;
+      opacity: .12;
+      pointer-events: none;
+    }
+    .log-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 180px; height: 180px;
+      background-image: radial-gradient(var(--color-orange) 1.5px, transparent 1.5px);
+      background-size: 14px 14px;
+      opacity: .12;
+      pointer-events: none;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Stagger cards */
+    .week-grid [data-animate]:nth-child(2) { transition-delay: .08s; }
+    .week-grid [data-animate]:nth-child(3) { transition-delay: .16s; }
+    .week-grid [data-animate]:nth-child(4) { transition-delay: .24s; }
+    .week-grid [data-animate]:nth-child(5) { transition-delay: .32s; }
+    .week-grid [data-animate]:nth-child(6) { transition-delay: .40s; }
+    .week-grid [data-animate]:nth-child(7) { transition-delay: .48s; }
+
+    .week-card {
+      background: #fff;
+      padding: 1.4rem 1.5rem 1.75rem;
+      box-shadow: var(--shadow-md);
+      border-top: 5px solid var(--accent, var(--color-pink));
+      transform: rotate(var(--card-r, 0deg));
+      transition: transform .4s cubic-bezier(.34, 1.5, .64, 1),
+                  box-shadow .4s ease;
+    }
+    .week-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 10;
+      transition-delay: 0s !important;
+    }
+
+    .week-num-display {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: .85;
+      color: var(--accent, var(--color-pink));
+      opacity: .18;
+      margin-bottom: -.5rem;
+    }
+    .week-card-title {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      letter-spacing: .04em;
+      color: var(--color-text);
+      margin-bottom: 1rem;
+    }
+
+    .week-link-list { display: flex; flex-direction: column; }
+    .week-link-list li a {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--color-text);
+      padding: .42rem 0;
+      border-bottom: 1px solid rgba(26, 16, 8, .08);
+      transition: color .2s ease, padding-left .2s ease;
+      opacity: 1;
+    }
+    .week-link-list li:last-child a { border-bottom: none; }
+    .week-link-list li a::before {
+      content: '★';
+      font-size: .5rem;
+      color: var(--accent, var(--color-pink));
+      flex-shrink: 0;
+    }
+    .week-link-list li a:link,
+    .week-link-list li a:visited { color: var(--color-text); opacity: 1; }
+    .week-link-list li a:hover {
+      color: var(--accent, var(--color-pink));
+      padding-left: .4rem;
+      opacity: 1;
+    }
+    .week-link-list li a:active { opacity: .6; }
+
+    @media (max-width: 768px) {
+      .week-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .week-card { transform: none !important; transition-delay: 0s !important; }
+    }
+    @media (max-width: 480px) {
+      .week-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <main>
-        <header>
-            <h1>My Web Design Journey</h1>
-            <p>A simple learning log for HTML practice and CodePen-style projects.</p>
-        </header>
 
-        <section>
-            <h2>Week 1</h2>
-            <ul>
-                <li><a href="week-1/newspaper.html">newspaper</a></li>
-                <li><a href="week-1/lost-pet.html">lost-pet</a></li>
-                <li><a href="week-1/favorite-band.html">favorite-band</a></li>
-            </ul>
-        </section>
+  <div class="grain" aria-hidden="true"></div>
 
-        <section>
-            <h2>Week 2</h2>
-            <ul>
-                <li><a href="week-2/recipe.html">recipe</a></li>
-                
-            </ul>
-        </section>
+  <!-- ===== NAV ===== -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="Macy Brown — home">MB</a>
+      <ul class="nav-links">
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="reflection.html">Reflection</a></li>
+        <li><a href="learning-log.html" aria-current="page">Log</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main>
 
-        <section>
-            <h2>Week 4</h2>
-            <ul>
-                <li><a href="week-4/recipe-in-style/recipe-in-style.html">recipe-in-style</a></li>
-                <li><a href="week-4/dev-tools-BrownMacy-wk4.html">dev-tools</a></li>
-                <li><a href="week-4/wk4-css-foundations-lvl-1/intro-to-css/01-css-methods/index.html">css-methods</a></li>
-            </ul>
-        </section>
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-label="Learning log introduction">
 
-        <section>
-            <h2>Week 5</h2>
-            <ul>
-                <li><a href="projects/tribute/tribute.html">tribute</a></li>
-            </ul>
-        </section>
+      <span class="star star--hero-bg" aria-hidden="true">★</span>
 
-        <section>
-            <h2>Week 6</h2>
-            <ul>
-                <li><a href="week-6/layout-challenge/index.html">layout challenge</a></li>
-            </ul>
-        </section>
+      <span class="star star--lg star--yellow star--abs" style="--r:8deg;   --d:.5s;  top:10%; right:6%;"   aria-hidden="true">★</span>
+      <span class="star star--md star--cream  star--abs" style="--r:-12deg; --d:1.5s; top:5%;  right:18%;"  aria-hidden="true">★</span>
+      <span class="star star--sm star--yellow star--abs" style="--r:20deg;  --d:.9s;  top:25%; right:4%;"   aria-hidden="true">★</span>
+      <span class="star star--xs star--cream  star--abs" style="--r:-6deg;  --d:2s;   bottom:20%; left:6%;" aria-hidden="true">★</span>
+      <span class="star star--sm star--yellow star--abs" style="--r:-18deg; --d:1.2s; bottom:10%; right:12%;" aria-hidden="true">★</span>
 
-        <section>
-            <h2>Week 7</h2>
-            <ul>
-                <li><a href="projects/field-guide/index.html">field-guide</a></li>
-                <li><a href="week-7/flexbox-tutorial/index.html">flexbox-tutorial</a></li>
-                <li><a href="week-7/mobile-navigation-tutorial/index.html">mobile-navigation-tutorial</a></li>
-            </ul>
-        </section>
+      <div class="hero-content" data-animate>
+        <p class="hero-eyebrow">DESN368 &nbsp;·&nbsp; EWU &nbsp;·&nbsp; Spring 2026</p>
+        <h1 class="hero-name">Learning<span class="hero-name-indent">Log</span></h1>
+        <div class="hero-divider" aria-hidden="true"></div>
+        <p class="hero-title">Weekly exercises, projects &amp; experiments</p>
+      </div>
+    </section>
 
-        <section>
-            <h2>Week 8</h2>
-            <ul>
-                <li><a href="projects/cotopaxi-product-site/index.html">cotopaxi-product-site</a></li>
-            </ul>
-        </section>
+    <!-- ===== WEEK CARDS ===== -->
+    <div class="log-section">
+      <div class="week-grid">
 
-    </main>
+        <article class="week-card" style="--card-r:-1.5deg; --accent:var(--color-pink);" data-animate>
+          <p class="week-num-display">01</p>
+          <h2 class="week-card-title">Week 1</h2>
+          <ul class="week-link-list">
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-1/newspaper.html" target="_blank" rel="noopener noreferrer">Newspaper</a></li>
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-1/lost-pet.html" target="_blank" rel="noopener noreferrer">Lost Pet</a></li>
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-1/favorite-band.html" target="_blank" rel="noopener noreferrer">Favorite Band</a></li>
+          </ul>
+        </article>
+
+        <article class="week-card" style="--card-r:1deg; --accent:var(--color-orange);" data-animate>
+          <p class="week-num-display">02</p>
+          <h2 class="week-card-title">Week 2</h2>
+          <ul class="week-link-list">
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-2/recipe.html" target="_blank" rel="noopener noreferrer">Recipe</a></li>
+          </ul>
+        </article>
+
+        <article class="week-card" style="--card-r:-1deg; --accent:var(--color-pink);" data-animate>
+          <p class="week-num-display">04</p>
+          <h2 class="week-card-title">Week 4</h2>
+          <ul class="week-link-list">
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-4/recipe-in-style/recipe-in-style.html" target="_blank" rel="noopener noreferrer">Recipe in Style</a></li>
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-4/dev-tools-BrownMacy-wk4.html" target="_blank" rel="noopener noreferrer">Dev Tools</a></li>
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-4/wk4-css-foundations-lvl-1/intro-to-css/01-css-methods/index.html" target="_blank" rel="noopener noreferrer">CSS Methods</a></li>
+          </ul>
+        </article>
+
+        <article class="week-card" style="--card-r:1.5deg; --accent:var(--color-orange);" data-animate>
+          <p class="week-num-display">05</p>
+          <h2 class="week-card-title">Week 5</h2>
+          <ul class="week-link-list">
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/projects/tribute/tribute.html" target="_blank" rel="noopener noreferrer">Tribute Site</a></li>
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-6/layout-challenge/index.html" target="_blank" rel="noopener noreferrer">Layout Challenge</a></li>
+          </ul>
+        </article>
+
+        <article class="week-card" style="--card-r:1deg; --accent:var(--color-orange);" data-animate>
+          <p class="week-num-display">07</p>
+          <h2 class="week-card-title">Week 7</h2>
+          <ul class="week-link-list">
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/projects/field-guide/index.html" target="_blank" rel="noopener noreferrer">Field Guide</a></li>
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-7/flexbox-tutorial/index.html" target="_blank" rel="noopener noreferrer">Flexbox Tutorial</a></li>
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/week-7/mobile-navigation-tutorial/index.html" target="_blank" rel="noopener noreferrer">Mobile Nav Tutorial</a></li>
+          </ul>
+        </article>
+
+        <article class="week-card" style="--card-r:-1deg; --accent:var(--color-pink);" data-animate>
+          <p class="week-num-display">08</p>
+          <h2 class="week-card-title">Week 8</h2>
+          <ul class="week-link-list">
+            <li><a href="https://mbrowndesn.github.io/desn368-s26-workspace/projects/cotopaxi-product-site/index.html" target="_blank" rel="noopener noreferrer">Cotopaxi Product Site</a></li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <p class="footer-copy">
+      © 2026 Macy Brown. Built for DESN368 at Eastern Washington University.
+      Co-created with Claude (Anthropic) — see README for details.
+    </p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="https://github.com/mbrowndesn" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/macy-brown-425742346/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="reflection.html">Reflection</a>
+      <a href="index.html">← Portfolio</a>
+    </nav>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.star').forEach(star => {
+      if (!star.style.getPropertyValue('--d')) {
+        star.style.setProperty('--d', (Math.random() * 3).toFixed(1) + 's');
+      }
+    });
+  </script>
+
 </body>
 </html>
