@@ -4,7 +4,7 @@
 
 ---
 
-🌐 **[View Live Portfolio](https://mbrowndesn.github.io/desn368-s26-workspace/)** &nbsp;·&nbsp; 📓 **[View Learning Log](https://mbrowndesn.github.io/desn368-s26-workspace/learning-log.html)** — weekly progress & exercises
+🌐 **[View Live Portfolio](https://mbrowndesn.github.io/desn368-s26-workspace/)** &nbsp;·&nbsp; 📓 **[View Learning Log](https://mbrowndesn.github.io/desn368-s26-workspace/archive/learning-log.html)** — weekly progress & exercises
 
 ---
 
@@ -49,15 +49,15 @@
 ## File Structure
 
 ```
-portfolio-2/
+repo/
 ├── index.html              Portfolio home
 ├── reflection.html         End-of-quarter reflection
-├── learning-log.html       Weekly project log
-├── css/
-│   └── style.css           Full design system
+├── archive/
+│   └── learning-log.html   Weekly project log
+│   └── course-log.md       Old course README
+│   └── styles.css          Full design system
 ├── images/                 Project thumbnails, about photo, favicon
-├── archive/course-log.md   Old course README
-└── CHECKLIST.md            Self-assessment checklist
+└── checklist.md            Self-assessment checklist
 ```
 
 ---
