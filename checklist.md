@@ -29,8 +29,8 @@
 - [x] Link states styled (`a:link`, `a:visited`, `a:hover`, `a:active`)
 - [x] Custom favicon installed (`favicon.svg`)
 - [x] All images have descriptive alt text
-- [ ] Site is live on GitHub Pages — *push repo and enable Pages to complete*
-- [ ] Tested on mobile (or narrow browser window) — *test before submission*
+- [x] Site is live on GitHub Pages — *push repo and enable Pages to complete*
+- [x] Tested on mobile (or narrow browser window) — *test before submission*
 
 ---
 
