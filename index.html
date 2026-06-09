@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Macy Brown — Visual Communication Designer</title>
+  <meta name="description" content="Portfolio of Macy Brown, visual communication design student at Eastern Washington University.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Fractal-noise grain — fixed, multiply blend, simulates riso paper texture -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- SVG definitions: star shape + riso print filters -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg">
+
+    <symbol id="star" viewBox="0 0 100 100">
+      <polygon fill="currentColor" points="50,1 54.1,34.5 74.5,7.6 61.3,38.7 92.4,25.5 65.5,45.9 99,50 65.5,54.1 92.4,74.5 61.3,61.3 74.5,92.4 54.1,65.5 50,99 45.9,65.5 25.5,92.4 38.7,61.3 7.6,74.5 34.5,54.1 1,50 34.5,45.9 7.6,25.5 38.7,38.7 25.5,7.6 45.9,34.5"/>
+    </symbol>
+
+    <defs>
+      <!--
+        riso-rough: SVG displacement filter for type roughness.
+        HOW IT WORKS (for your presentation):
+        feTurbulence generates a noise map — every pixel gets a
+        slightly different offset value. feDisplacementMap uses
+        that noise map to physically move each source pixel up
+        to `scale` pixels in x and y. On large type at scale=4,
+        the result is slightly wobbly, uneven edges that look
+        like hand-pressed ink rather than clean digital letterforms.
+      -->
+      <filter id="riso-rough" x="-3%" y="-3%" width="106%" height="106%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4"
+          xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+
+      <!--
+        riso-ink: Applies grain texture directly inside the letterforms.
+        feTurbulence creates per-pixel noise. feBlend multiply combines
+        it with the source text — lighter noise areas leave the ink color
+        nearly unchanged, darker noise areas make letters darker/rougher.
+        The result looks like ink soaked into paper with visible texture.
+      -->
+      <filter id="riso-ink" x="-3%" y="-3%" width="106%" height="106%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="3" seed="14" result="noise"/>
+        <feColorMatrix in="noise" type="matrix"
+          values="0 0 0 0 0.82
+                  0 0 0 0 0.82
+                  0 0 0 0 0.82
+                  0 0 0 1  0" result="lightGrey"/>
+        <feBlend in="SourceGraphic" in2="lightGrey" mode="multiply"/>
+      </filter>
+    </defs>
+
+  </svg>
+
+  <!-- ============ NAV ============ -->
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo" aria-label="Macy Brown — home">MB</a>
+      <ul>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="reflection.html">Reflection</a></li>
+        <li><a href="learning-log.html">Log</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============
+         White paper ground, halftone screen + grain.
+         Two-up: intro type on the left — "Macy" in
+         translucent pink ink, "Brown" in translucent
+         orange ink, both mix-blend-mode:multiply so the
+         color soaks into the paper texture rather than
+         sitting flat on top of it. White-outline photo
+         cutout on the right. A loose scatter of stars
+         (pink/orange/yellow) sits across the ground —
+         like ink test-marks tossed down before a run.
+    ================================= -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+
+      <div class="hero-stars" aria-hidden="true">
+        <svg class="star pink xl" viewBox="0 0 100 100"><use href="#star"/></svg>
+        <svg class="star yellow md" viewBox="0 0 100 100"><use href="#star"/></svg>
+        <svg class="star orange sm" viewBox="0 0 100 100"><use href="#star"/></svg>
+        <svg class="star pink sm alt" viewBox="0 0 100 100"><use href="#star"/></svg>
+      </div>
+
+      <div class="hero-inner">
+
+        <div class="hero-text reveal">
+          <p class="hero-eyebrow">Visual Communication Design</p>
+          <h1 class="hero-heading" id="hero-heading">Hi, I'm <span class="hl-pink">Macy</span> <span class="hl-orange">Brown</span></h1>
+          <p class="hero-tagline">A Visual communication design student at Eastern Washington University</p>
+          <a href="#projects" class="hero-cta">See My Work</a>
+        </div>
+
+        <!-- White-outline cutout — drop-shadow() traces the alpha channel -->
+        <div class="cutout hero-photo reveal reveal-delay-2">
+          <img
+            src="images/macy.png"
+            alt="Macy Brown, visual communication design student"
+            width="380"
+            height="500">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============
+         White paper ground, halftone + grain. Each card
+         carries its own translucent ink wash — pink,
+         orange, yellow, or plain paper — so the cards
+         themselves tell the color story, like loose
+         riso-printed sheets fanned out across a table.
+         Each wash is a low-alpha color (see --pink-wash
+         etc. in :root) over white paper — bright and
+         light, with the grain/halftone showing through.
+    ===================================== -->
+    <section class="projects" id="projects" aria-labelledby="projects-heading">
+
+      <div class="projects-header reveal">
+        <span class="projects-label">Selected Work</span>
+        <h2 class="projects-title" id="projects-heading">Projects</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Card 1: The Recipe — pink ink wash -->
+        <article class="poster-card pink reveal reveal-delay-1" aria-label="Project: The Recipe">
+          <div class="poster-header">
+            <h3>The Recipe</h3>
+          </div>
+          <div class="poster-figure">
+            <!-- Orange star halo — z-index:1, below photo at z-index:2 -->
+            <svg class="card-star star orange" viewBox="0 0 100 100" aria-hidden="true">
+              <use href="#star"/>
+            </svg>
+            <!--
+              SWAP when ready — delete the placeholder, uncomment this:
+              <div class="cutout">
+                <img src="images/thumb-recipe.png"
+                     alt="Screenshot of the blueberry muffin recipe page — clean, appetizing layout"
+                     width="260" height="200">
+              </div>
+            -->
+            <div class="placeholder">Add<br>thumb-recipe.png</div>
+          </div>
+          <div class="poster-footer">
+            <p>A clean, appetizing recipe page for classic blueberry muffins.</p>
+            <a class="card-link"
+               href="https://mbrowndesn.github.io/desn368-s26-workspace/week-2/recipe.html"
+               target="_blank" rel="noopener">View →</a>
+          </div>
+        </article>
+
+        <!-- Card 2: Tribute Site — orange ink wash -->
+        <article class="poster-card orange reveal reveal-delay-2" aria-label="Project: Tribute Site">
+          <div class="poster-header">
+            <h3>Tribute Site</h3>
+          </div>
+          <div class="poster-figure">
+            <svg class="card-star star pink" viewBox="0 0 100 100" aria-hidden="true">
+              <use href="#star"/>
+            </svg>
+            <!--
+              <div class="cutout">
+                <img src="images/thumb-tribute.png"
+                     alt="Screenshot of the Christopher Nolan tribute site — cinematic, dark aesthetic"
+                     width="260" height="200">
+              </div>
+            -->
+            <div class="placeholder">Add<br>thumb-tribute.png</div>
+          </div>
+          <div class="poster-footer">
+            <p>A cinematic tribute to filmmaker Christopher Nolan.</p>
+            <a class="card-link"
+               href="https://mbrowndesn.github.io/desn368-s26-workspace/projects/tribute/tribute.html"
+               target="_blank" rel="noopener">View →</a>
+          </div>
+        </article>
+
+        <!-- Card 3: Field Guide — yellow ink wash -->
+        <article class="poster-card yellow reveal reveal-delay-3" aria-label="Project: Field Guide">
+          <div class="poster-header">
+            <h3>Field Guide</h3>
+          </div>
+          <div class="poster-figure">
+            <svg class="card-star star pink" viewBox="0 0 100 100" aria-hidden="true">
+              <use href="#star"/>
+            </svg>
+            <!--
+              <div class="cutout">
+                <img src="images/thumb-field-guide.png"
+                     alt="Screenshot of the camping field guide page — organized, practical layout"
+                     width="260" height="200">
+              </div>
+            -->
+            <div class="placeholder">Add<br>thumb-field-guide.png</div>
+          </div>
+          <div class="poster-footer">
+            <p>A practical field guide to camping essentials.</p>
+            <a class="card-link"
+               href="https://mbrowndesn.github.io/desn368-s26-workspace/projects/field-guide/index.html"
+               target="_blank" rel="noopener">View →</a>
+          </div>
+        </article>
+
+        <!-- Card 4: Product Landing Page — plain paper ground -->
+        <article class="poster-card paper reveal reveal-delay-4" aria-label="Project: Product Landing Page">
+          <div class="poster-header">
+            <h3>Product Landing Page</h3>
+          </div>
+          <div class="poster-figure">
+            <svg class="card-star star orange" viewBox="0 0 100 100" aria-hidden="true">
+              <use href="#star"/>
+            </svg>
+            <!--
+              <div class="cutout">
+                <img src="images/thumb-cotopaxi.png"
+                     alt="Screenshot of the Cotopaxi Del Día landing page — bold color-blocked design"
+                     width="260" height="200">
+              </div>
+            -->
+            <div class="placeholder">Add<br>thumb-cotopaxi.png</div>
+          </div>
+          <div class="poster-footer">
+            <p>A landing page for Cotopaxi's Del Día packs and their color-blocked design.</p>
+            <a class="card-link"
+               href="https://mbrowndesn.github.io/desn368-s26-workspace/projects/cotopaxi-product-site/index.html"
+               target="_blank" rel="noopener">View →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============
+         Light yellow-wash ground, halftone + grain.
+         White-outline photo cutout on the left, "About"
+         heading + bio on the right — the personal,
+         photo-forward layout, run through the riso system.
+         One large orange star (multiply on yellow = warm
+         amber where the inks overlap) bleeds off the corner.
+    ================================== -->
+    <section class="about" id="about" aria-labelledby="about-heading">
+
+      <!-- Single large star — graphic accent, multiply blend on yellow -->
+      <svg class="star orange about-star" viewBox="0 0 100 100" aria-hidden="true">
+        <use href="#star"/>
+      </svg>
+
+      <div class="about-inner">
+
+        <!-- White-outline cutout photo -->
+        <div class="cutout about-photo reveal">
+          <img
+            src="images/macy.png"
+            alt="Macy Brown, visual communication design student at Eastern Washington University"
+            width="280"
+            height="380">
+        </div>
+
+        <div class="about-text reveal reveal-delay-2">
+          <h2 id="about-heading">About</h2>
+          <p>I'm a student at Eastern Washington University who's always been into creative
+            media, especially design, film, and editing. I love work that feels bold and a
+            little different instead of safe and expected. Lately I've gotten into building
+            for the web too, so I can actually make the things I picture in my head and not
+            just design them.</p>
+
+          <nav class="about-links" aria-label="External links">
+            <a href="https://github.com/mbrowndesn" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/macy-brown-425742346/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="reflection.html">Reflection</a>
+            <a href="learning-log.html">Learning Log</a>
+          </nav>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="https://github.com/mbrowndesn" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/macy-brown-425742346/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="learning-log.html">Learning Log</a>
+        <a href="reflection.html">Reflection</a>
+      </nav>
+      <p>© 2026 Macy Brown. Built for DESN368 at Eastern Washington University.
+        Co-created with Claude (Anthropic) — see README for details.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll-reveal: IntersectionObserver fades + lifts .reveal elements
+       into place as they enter the viewport — see js/scroll-reveal.js -->
+  <script src="js/scroll-reveal.js"></script>
+
+</body>
+</html>
