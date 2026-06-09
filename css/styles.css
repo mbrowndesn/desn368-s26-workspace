@@ -1,751 +1,768 @@
-/* =====================================================
-   Macy Brown — Portfolio
-   DESN368 · Eastern Washington University · Spring 2026
+/* ================================================================
+   MACY BROWN — DESN368 PORTFOLIO
+   Fraunces (display) + DM Sans (body) | Risograph Scrapbook
+   ================================================================ */
 
-   REFERENCE: Risograph print
-   — white paper ground, BRIGHT/LIGHT pink + orange ink
-     as the lead colors, electric yellow as the accent,
-     translucent ink washes (riso ink is see-through —
-     overlaps create new colors via multiply blend),
-     halftone dot screens, grain, pure black structure
-   ===================================================== */
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
 
-/* --- Custom Properties -----------------------------------
-   Solid hues for type/ink (legible on paper); -wash variants
-   are the same hues at low alpha — used as card grounds and
-   shape fills so color reads as a light, see-through layer
-   sitting on top of the paper rather than a flat block.    */
+/* === CUSTOM PROPERTIES === */
 :root {
-  --paper:  #FFFFFF;
-  --black:  #000000;
-  --pink:        #FF6FB6;                    /* bright, light fluorescent pink ink */
-  --orange:      #FF8A4D;                    /* bright, light fluorescent orange ink */
-  --yellow:      #FFE066;                    /* light riso-yellow accent */
-  --pink-wash:   rgba(255, 111, 182, 0.4);
-  --orange-wash: rgba(255, 138,  77, 0.4);
-  --yellow-wash: rgba(255, 224, 102, 0.38);
+  /* Colors */
+  --color-bg:     #FBF5EC;
+  --color-text:   #1A1008;
+  --color-pink:   #FF6BAD;
+  --color-orange: #FF9246;
+  --color-yellow: #FFD023;
 
-  --font-head: 'Bricolage Grotesque', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Fonts */
+  --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
 
-  --border: 3px solid var(--black);
+  /* Layout */
+  --max-w:  1160px;
+  --pad-x:  clamp(1.25rem, 5vw, 3.5rem);
+
+  /* Shadows */
+  --shadow-sm: 2px 3px 10px rgba(26, 16, 8, .14);
+  --shadow-md: 4px 8px 24px rgba(26, 16, 8, .14);
+  --shadow-lg: 8px 16px 40px rgba(26, 16, 8, .22);
 }
 
-/* --- Reset ---------------------------------------------- */
+/* === RESET === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html  { scroll-behavior: smooth; }
+img   { display: block; max-width: 100%; height: auto; }
+ul    { list-style: none; }
+a     { text-decoration: none; }
+
+/* === BASE === */
 body {
-  background: var(--paper);
-  color: var(--black);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
 }
 
-.svg-sprite { display: none; }
-
-/* --- Film Grain ------------------------------------------
-   HOW IT WORKS (for your presentation):
-
-   An inline SVG data URI contains two chained SVG filters:
-   1. feTurbulence (fractalNoise) — generates pseudo-random
-      pixel noise mathematically; it's the same algorithm as
-      Photoshop's Add Noise but computed at render time.
-   2. feColorMatrix (saturate: 0) — strips color → grayscale.
-   The result fills a rect at 100%×100% and is used as a
-   CSS background-image on a fixed overlay div.
-   mix-blend-mode: multiply means any white areas of the
-   grain disappear (white × page = page color), and dark
-   grain areas darken what's underneath — exactly how the
-   paper texture appears on a real risograph print.
-   -------------------------------------------------------- */
-.grain-overlay {
-  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-  opacity: 0.22; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* --- Link States ---------------------------------------- */
-a:link    { color: inherit; text-decoration: none; }
-a:visited { color: var(--orange); }
-a:hover   { color: var(--pink); text-decoration: none; }
-a:active  { color: var(--yellow); }
-
-/* --- Type -----------------------------------------------
-   Bricolage Grotesque 800 with tight letter-spacing
-   and line-height — stacked like hand-set poster type.
-   clamp(min, preferred-vw, max) scales fluidly.
-   -------------------------------------------------------- */
-h1, h2, h3 {
-  font-family: var(--font-head);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-}
-
-/* --- Stars -----------------------------------------------
-   HOW THEY WORK (for your presentation):
-
-   12-point SVG polygon (24 vertices — each point has an
-   outer tip and an inner notch). fill="currentColor" means
-   the polygon inherits from the CSS `color` property on
-   the parent SVG element — so class-based color changes
-   require no HTML attribute edits, just one CSS rule.
-   -------------------------------------------------------- */
-.star {
-  position: absolute;
+/* === GRAIN OVERLAY === */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
   pointer-events: none;
-  z-index: 0;
-}
-.star.pink   { color: var(--pink); }
-.star.orange { color: var(--orange); }
-.star.yellow { color: var(--yellow); }
-.star.black  { color: var(--black); }
-
-/* --- Cutout ----------------------------------------------
-   HOW IT WORKS (for your presentation):
-
-   Source must be a transparent-background PNG.
-   Four drop-shadow() calls offset 4px in each cardinal
-   direction, color white. drop-shadow follows the image's
-   alpha channel (not its rectangular box), so it traces
-   any irregular shape. Stacking four directions fills the
-   diagonal corners — no gaps in the sticker border.
-   -------------------------------------------------------- */
-.cutout { display: block; }
-.cutout img {
-  display: block;
-  width: 100%;
-  filter:
-    drop-shadow( 4px  0   0 #fff)
-    drop-shadow(-4px  0   0 #fff)
-    drop-shadow( 0    4px 0 #fff)
-    drop-shadow( 0   -4px 0 #fff);
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
 }
 
-/* =====================================================
-   HEADER / NAV
-   White paper. Pure black type and border.
-   Simple — it's not the visual; the content is.
-   ===================================================== */
-header {
+/* === GLOBAL LINK STATES === */
+a:link    { color: var(--color-pink); }
+a:visited { color: var(--color-orange); }
+a:hover   { opacity: .85; }
+a:active  { opacity: .5; }
+
+/* === NAVIGATION === */
+.site-header {
   position: sticky;
   top: 0;
-  z-index: 200;
-  background: var(--paper);
-  border-bottom: var(--border);
+  z-index: 500;
+  background-color: var(--color-bg);
+  border-bottom: 3px solid var(--color-pink);
 }
 
-nav {
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1400px;
+  max-width: var(--max-w);
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: .9rem var(--pad-x);
+  gap: 2rem;
 }
 
 .nav-logo {
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 1.4rem;
-  letter-spacing: -0.06em;
-  color: var(--black);
-}
-.nav-logo:link, .nav-logo:visited { color: var(--black); text-decoration: none; }
-.nav-logo:hover { color: var(--pink); text-decoration: none; }
-.nav-logo:active { color: var(--orange); text-decoration: none; }
-
-nav ul { display: flex; gap: 2.5rem; list-style: none; }
-nav ul a {
-  font-weight: 500;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--black);
-}
-nav ul a:visited { color: var(--black); }
-nav ul a:hover   { color: var(--pink); text-decoration: none; }
-nav ul a:active  { color: var(--orange); }
-
-/* =====================================================
-   HERO
-   White paper ground, halftone screen + grain.
-   Two-up: intro type on the left, white-outline photo
-   cutout on the right. "Macy" sits in translucent pink
-   ink, "Brown" in translucent orange — mix-blend-mode:
-   multiply lets each color sink into the paper grain
-   rather than sit flat on top of it, the way riso ink
-   soaks into uncoated stock. A loose scatter of stars
-   (pink/orange/yellow, mixed sizes) sits across the
-   ground like ink test-marks tossed down before a run.
-   ===================================================== */
-.hero {
-  position: relative;
-  border-bottom: var(--border);
-  overflow: hidden;
-  padding: 4rem 2rem 4rem;
-  /* Halftone: faint pink dots on white paper — riso ink registering on stock */
-  background-color: var(--paper);
-  background-image: radial-gradient(circle, rgba(255, 111, 182, 0.16) 1px, transparent 1px);
-  background-size: 6px 6px;
-}
-
-/* Star scatter — sized by sm/md/xl modifiers, colored by
-   the shared .star.pink/.orange/.yellow rules (which set
-   `color`, inherited by the polygon's fill="currentColor"),
-   multiply-blended so each one reads as ink soaking into
-   the paper rather than a sticker floating on top of it.  */
-.hero-stars { position: absolute; inset: 0; z-index: 0; }
-.hero-stars .star { mix-blend-mode: multiply; opacity: 0.82; }
-.hero-stars .xl  { width: 270px; height: 270px; top: -55px;  right: -55px; }
-.hero-stars .md  { width: 140px; height: 140px; top: 20%;    right: 16%; }
-.hero-stars .sm  { width: 86px;  height: 86px;  bottom: 14%; right: 32%; }
-.hero-stars .alt { width: 64px;  height: 64px;  top: 8%;     left: 4%; }
-
-.hero-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: .06em;
+  line-height: 1;
+  color: var(--color-bg);
+  background-color: var(--color-pink);
+  padding: .2rem .55rem .2rem;
+  box-shadow: 3px 3px 0 var(--color-orange);
+  display: inline-flex;
   align-items: center;
-  gap: 3rem;
-}
-
-/* Scoped to .hero-text — .hero-eyebrow is also reused as a plain
-   label on the Reflection/Log page heroes, which sit on colored
-   grounds and need to inherit that section's own text color.    */
-.hero-text .hero-eyebrow {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--orange);
-  margin-bottom: 0.75rem;
-}
-
-.hero-heading {
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: clamp(2.6rem, 6.4vw, 5.25rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  /* riso-rough: feDisplacementMap gives the type a hand-pressed wobble */
-  filter: url(#riso-rough);
-}
-
-/* Translucent ink layers — color + multiply blend let the
-   halftone/grain texture show *through* the letterforms,
-   the signature look of riso ink sitting on uncoated paper. */
-.hl-pink   { color: var(--pink);   mix-blend-mode: multiply; }
-.hl-orange { color: var(--orange); mix-blend-mode: multiply; }
-
-.hero-tagline {
-  margin-top: 1.25rem;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  line-height: 1.6;
-  max-width: 480px;
-}
-
-.hero-cta {
-  margin-top: 2rem;
-  display: inline-block;
-  background: var(--black);
-  color: var(--paper);
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.75rem 1.75rem;
-  border: var(--border);
-  border-radius: 1px;
-  transition: background .15s ease, color .15s ease, border-color .15s ease;
-}
-.hero-cta:link, .hero-cta:visited { color: var(--paper); text-decoration: none; }
-.hero-cta:hover  { background: var(--pink); border-color: var(--pink); color: var(--paper); text-decoration: none; }
-.hero-cta:active { background: var(--orange); border-color: var(--orange); color: var(--paper); }
-
-/* White-outline photo cutout — sits right of the type,
-   given a slight tilt so it reads as a placed print,
-   not a sterile product shot.                          */
-.hero-photo {
-  position: relative;
-  z-index: 1;
-  justify-self: center;
-  max-width: 320px;
-  transform: rotate(-2deg);
-}
-
-/* =====================================================
-   PROJECTS
-   Hot pink ground — white paper cards sit on it.
-   Section title at poster scale in black or white.
-   ===================================================== */
-.projects {
-  border-bottom: var(--border);
-  /* Halftone screen: faint orange dots on white paper — the section
-     ground stays light/neutral so the cards' translucent ink washes
-     (pink/orange/yellow/paper — see .poster-card variants below)
-     carry the color story, like loose riso sheets fanned on a table. */
-  background-color: var(--paper);
-  background-image: radial-gradient(circle, rgba(255, 138, 77, 0.16) 1.5px, transparent 1.5px);
-  background-size: 7px 7px;
-}
-
-.projects-header {
-  padding: 3.5rem 2rem 2.5rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  border-bottom: var(--border);
-  display: flex;
-  align-items: baseline;
-  gap: 2.5rem;
-}
-
-.projects-label {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--orange);
+  text-shadow: none;
   flex-shrink: 0;
+  transition: transform .3s cubic-bezier(.34, 1.6, .64, 1),
+              box-shadow .3s ease;
 }
+.nav-logo:link,
+.nav-logo:visited { color: var(--color-bg); opacity: 1; }
+.nav-logo:hover   { transform: rotate(-8deg) scale(1.12); opacity: 1; box-shadow: 5px 5px 0 var(--color-orange); }
+.nav-logo:active  { opacity: .7; }
 
-.projects-title {
-  font-size: clamp(3rem, 10vw, 9rem);
-  color: var(--black);
-  line-height: 0.88;
-  letter-spacing: -0.06em;
-  /* riso-ink: grain texture sits inside the letterforms themselves */
-  filter: url(#riso-ink);
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-  gap: 1.5rem;
-}
-
-/* =====================================================
-   POSTER CARDS
-   White paper cards on the pink ground.
-   Each one reads like a printed riso sheet.
-
-   HOW THE TRANSITION WORKS (for your presentation):
-   Default state: card has a slight rotation (-1deg / +1deg).
-   :hover state: transform resets to 0 and lifts 6px via
-   translateY(-6px), animated by transition: transform .2s ease.
-   box-shadow with no blur = hard offset shadow, like a
-   block printed element lifting off the page.
-   ===================================================== */
-.poster-card {
-  position: relative;
-  background: var(--paper);
-  border: var(--border);
-  display: flex;
-  flex-direction: column;
-  min-height: 500px;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.poster-card:nth-child(odd)  { transform: rotate(-1deg); }
-.poster-card:nth-child(even) { transform: rotate(0.8deg); }
-.poster-card:hover {
-  transform: rotate(0deg) translateY(-6px);
-  box-shadow: 6px 6px 0 var(--black);
-  z-index: 2;
-}
-
-/* Color variants — each card carries its own translucent
-   ink wash (the --X-wash custom properties are the same
-   bright pink/orange/yellow hues at low alpha) layered
-   over the white card body. Riso ink itself is see-through,
-   so a light wash over white paper is the authentic look —
-   brighter and lighter than a flat, opaque color block,
-   and the grain/halftone texture still shows through it. */
-.poster-card.pink   { background-color: var(--pink-wash); }
-.poster-card.orange { background-color: var(--orange-wash); }
-.poster-card.yellow { background-color: var(--yellow-wash); }
-.poster-card.paper  { background-color: var(--paper); }
-
-/* Big black title — poster headline fills the card top */
-.poster-header {
-  padding: 1.25rem 1.25rem 1rem;
-  border-bottom: 2px solid var(--black);
-  position: relative;
-  z-index: 2;
-}
-
-.poster-header h3 {
-  font-size: clamp(1.4rem, 4vw, 2.5rem);
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  line-height: 0.9;
-  color: var(--black);
-}
-
-/* Figure: photo / placeholder as centerpiece
-   card-star at z-index:1 — behind photo at z-index:2.
-   Creates the starburst-halo behind the subject.
-   mix-blend-mode: multiply so the star darkens the paper
-   rather than floating on top of it.                    */
-.poster-figure {
-  flex: 1;
+.nav-links {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 1.5rem 1.25rem 0.75rem;
-  position: relative;
-  min-height: 240px;
+  gap: 2rem;
 }
 
-.card-star {
+.nav-links a {
+  font-size: .875rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color .2s ease;
+}
+.nav-links a:link,
+.nav-links a:visited { color: var(--color-text); opacity: 1; }
+.nav-links a:hover   { color: var(--color-pink);  opacity: 1; }
+.nav-links a:active  { color: var(--color-orange); opacity: 1; }
+
+.nav-links a::after {
+  content: '';
   position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background-color: var(--color-pink);
+  transition: width .3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* === SCROLL ANIMATIONS (before component styles so hover specificity wins) === */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity  .65s cubic-bezier(.34, 1.4, .64, 1),
+    transform .65s cubic-bezier(.34, 1.4, .64, 1);
+}
+
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--card-r, 0deg));
+}
+
+/* Stagger project cards with nth-child */
+.project-grid [data-animate]:nth-child(2) { transition-delay: .12s; }
+.project-grid [data-animate]:nth-child(3) { transition-delay: .24s; }
+.project-grid [data-animate]:nth-child(4) { transition-delay: .36s; }
+
+/* === STARS === */
+.star {
+  display: inline-block;
+  line-height: 1;
+  transform: rotate(var(--r, 0deg));
+  animation: twinkle 4s ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s);
+  pointer-events: none;
+  user-select: none;
+}
+.star--lg   { font-size: 3.5rem; }
+.star--md   { font-size: 2.2rem; }
+.star--sm   { font-size: 1.2rem; }
+.star--xs   { font-size: .8rem;  }
+.star--pink   { color: var(--color-pink);   }
+.star--orange { color: var(--color-orange); }
+.star--yellow { color: var(--color-yellow); }
+.star--cream  { color: var(--color-bg);     }
+.star--abs { position: absolute; }
+
+/* Giant background star for hero */
+.star--hero-bg {
+  position: absolute !important;
+  font-size: min(60vw, 36rem);
+  opacity: .07;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
+  transform: translate(-50%, -50%) rotate(12deg);
+  color: var(--color-bg);
   z-index: 1;
+  animation: none;
+  line-height: 1;
+}
+
+/* Star color overrides on colored section backgrounds */
+.hero  .star--pink   { color: var(--color-yellow); }
+.hero  .star--orange { color: rgba(251, 245, 236, .8); }
+.about .star--pink   { color: rgba(251, 245, 236, .85); }
+.about .star--orange { color: var(--color-yellow); }
+
+@keyframes twinkle {
+  from { opacity: .6;  transform: rotate(var(--r, 0deg)) scale(1); }
+  to   { opacity: 1;   transform: rotate(calc(var(--r, 0deg) + 12deg)) scale(1.12); }
+}
+
+/* === HERO === */
+.hero {
+  position: relative;
+  background-color: var(--color-pink);
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  padding: 3.5rem var(--pad-x) 4rem;
+  overflow: hidden;
+}
+
+/* Halftone dots on hero — cream top-left, yellow bottom-right */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 280px; height: 280px;
+  background-image: radial-gradient(rgba(251, 245, 236, .28) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
   pointer-events: none;
-  mix-blend-mode: multiply;
-  opacity: 0.7;
+  z-index: 1;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 200px; height: 200px;
+  background-image: radial-gradient(rgba(255, 210, 35, .38) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.poster-figure .cutout {
-  position: relative;
-  z-index: 2;
-  transform: rotate(-3deg);
-  max-width: 78%;
-}
-.poster-card:nth-child(even) .poster-figure .cutout { transform: rotate(3deg); }
+/* Star color overrides on pink hero */
+.hero .star--pink   { color: var(--color-yellow); }
+.hero .star--orange { color: rgba(251, 245, 236, .8); }
 
-/* Placeholder shown until transparent-bg images are added */
-.placeholder {
+.hero-content {
   position: relative;
   z-index: 2;
-  width: 155px;
-  height: 175px;
-  border: 2px dashed rgba(0,0,0,0.25);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-eyebrow {
+  font-size: .7rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(251, 245, 236, .55);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  font-weight: 400;
+  line-height: .88;
+  letter-spacing: .02em;
+  color: var(--color-bg);
+  text-shadow:
+    -4px -3px 0 rgba(255, 106, 0, .80),
+     5px  4px 0 rgba(255, 210, 35, .55);
+  display: block;
+  margin-bottom: 0;
+}
+
+/* "Brown" indented to create diagonal visual movement */
+.hero-name-indent {
+  display: block;
+  padding-left: clamp(2rem, 7vw, 6rem);
+}
+
+.hero-divider {
+  width: 60%;
+  height: 5px;
+  background-color: var(--color-yellow);
+  margin: 1.25rem 0;
+  transform: rotate(-.5deg);
+  border-radius: 3px;
+}
+
+.hero-title {
+  font-size: clamp(.85rem, 2vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  opacity: .72;
+}
+
+/* === SECTION LABEL === */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin-bottom: 2.5rem;
+}
+.section-label .star { position: static; animation: none; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .04em;
+}
+
+/* === PROJECTS === */
+.projects {
+  padding: 3.5rem var(--pad-x) 4rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Halftone dot patterns */
+.projects::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 260px; height: 260px;
+  background-image: radial-gradient(var(--color-pink) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  opacity: .18;
+  pointer-events: none;
+  z-index: 0;
+}
+.projects::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 180px; height: 180px;
+  background-image: radial-gradient(var(--color-orange) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  opacity: .15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-label { position: relative; z-index: 1; }
+
+/* === PROJECT CARD === */
+.project-card {
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transform: rotate(var(--card-r, 0deg));
+  transition:
+    transform  .4s cubic-bezier(.34, 1.5, .64, 1),
+    box-shadow .4s ease;
+}
+
+/* Hover overrides animation state — same specificity but comes after [data-animate] rules */
+.project-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 10;
+  transition-delay: 0s !important;
+}
+
+.project-card > a {
+  display: block;
+  color: var(--color-text);
+}
+.project-card > a:link,
+.project-card > a:visited { color: var(--color-text); opacity: 1; }
+.project-card > a:hover   { opacity: 1; }
+.project-card > a:active  { opacity: .75; }
+
+.card-thumb {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #ede6dc;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-head);
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  opacity: 0.4;
-  text-align: center;
-  line-height: 1.5;
 }
 
-/* Bottom strip: description + link */
-.poster-footer {
-  padding: 0.85rem 1.25rem 1.25rem;
-  border-top: 2px solid var(--black);
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s ease;
 }
 
-.poster-footer p {
-  font-size: 0.78rem;
-  line-height: 1.35;
-  flex: 1;
-  color: var(--black);
+.project-card:hover .card-thumb img { transform: scale(1.05); }
+
+.card-body { padding: 1.25rem 1.5rem 1.5rem; }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--color-text);
+  margin-bottom: .3rem;
 }
 
-.card-link {
-  flex-shrink: 0;
+.card-desc {
+  font-size: .875rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  opacity: .68;
+  margin-bottom: .9rem;
+}
+
+.card-cta {
   display: inline-block;
-  background: var(--black);
-  color: var(--paper);
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 0.72rem;
-  padding: 0.4rem 0.9rem;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  border: 2px solid var(--black);
-  white-space: nowrap;
+  color: var(--color-pink);
+  transition: letter-spacing .25s ease, color .25s ease;
 }
-.card-link:link, .card-link:visited { color: var(--paper); text-decoration: none; }
-.card-link:hover  { background: var(--pink); border-color: var(--pink); color: var(--paper); text-decoration: none; }
-.card-link:active { background: var(--orange); border-color: var(--orange); }
+.project-card:hover .card-cta {
+  letter-spacing: .14em;
+  color: var(--color-orange);
+}
 
-/* =====================================================
-   ABOUT
-   Light yellow ground, halftone + grain. White-outline
-   photo cutout on the left, "About" heading + bio on
-   the right — the personal, photo-forward layout, run
-   through the riso system. One large orange star
-   (multiply on yellow = warm amber where inks overlap)
-   bleeds off the bottom-right corner as a graphic accent.
-   ===================================================== */
+/* === ABOUT === */
 .about {
-  border-bottom: var(--border);
+  background-color: var(--color-orange);
+  color: var(--color-bg);
+  padding: 3.5rem var(--pad-x) 4rem;
   position: relative;
   overflow: hidden;
-  /* Halftone screen: dark dots on light yellow — dark ink on
-     a light ground, the inverse of the pink/orange sections. */
-  background-color: var(--yellow);
-  background-image: radial-gradient(circle, rgba(0,0,0,0.14) 1.5px, transparent 1.5px);
-  background-size: 7px 7px;
 }
 
-.about-star {
-  width: 420px;
-  height: 420px;
-  bottom: -80px;
-  right: -60px;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
+.about::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: screen;
 }
 
 .about-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
   position: relative;
   z-index: 1;
-  max-width: 1300px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  align-items: center;
-  gap: 3.5rem;
-  min-height: 70vh;
-  padding: 4rem 2rem;
+}
+
+.about-photo-wrap {
+  flex-shrink: 0;
+  width: 260px;
+  border: 6px solid rgba(251, 245, 236, .9);
+  box-shadow: var(--shadow-lg);
 }
 
 .about-photo {
-  justify-self: center;
-  max-width: 280px;
-  transform: rotate(2deg);
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background-color: #c45200;
 }
 
-.about h2 {
-  font-size: clamp(3rem, 9vw, 7rem);
-  color: var(--black);
-  line-height: 0.88;
-  letter-spacing: -0.05em;
+.about-content .section-title {
+  color: var(--color-bg);
   margin-bottom: 1.25rem;
-  /* riso-rough: wobbly edges on the "About" heading */
-  filter: url(#riso-rough);
 }
 
-.about-text {
-  display: flex;
-  flex-direction: column;
+.about-bio {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 48ch;
+  margin-bottom: .75rem;
+  opacity: .92;
 }
 
-.about p { font-size: 1.1rem; line-height: 1.75; max-width: 480px; }
-.about p + p { margin-top: 1rem; }
+.about-contact {
+  font-size: .82rem;
+  opacity: .7;
+  margin-bottom: 1.75rem;
+  color: var(--color-bg);
+}
+.about-contact a:link,
+.about-contact a:visited { color: var(--color-bg); text-decoration: underline; opacity: 1; }
+.about-contact a:hover   { opacity: .8; }
 
 .about-links {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 2.5rem;
   flex-wrap: wrap;
+  gap: .75rem;
 }
+
 .about-links a {
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 0.8rem;
+  display: inline-block;
+  padding: .5rem 1.25rem;
+  border: 2px solid rgba(251, 245, 236, .8);
+  color: var(--color-bg);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  border-bottom: 3px solid var(--black);
-  padding-bottom: 2px;
-  color: var(--black);
+  border-radius: 2px;
+  transition:
+    background-color .25s ease,
+    border-color      .25s ease,
+    color             .25s ease,
+    transform         .25s cubic-bezier(.34, 1.5, .64, 1);
 }
-.about-links a:link    { color: var(--black); text-decoration: none; }
-.about-links a:visited { color: var(--orange); border-color: var(--orange); text-decoration: none; }
-.about-links a:hover   { color: var(--pink); border-color: var(--pink); text-decoration: none; }
-.about-links a:active  { color: var(--black); text-decoration: none; }
-
-/* =====================================================
-   FOOTER
-   Black ground, white and pink text.
-   Mirrors the nav — brackets the page.
-   ===================================================== */
-footer {
-  background: var(--black);
-  color: var(--paper);
-  padding: 2.5rem 2rem;
+.about-links a:link,
+.about-links a:visited { color: var(--color-bg); opacity: 1; }
+.about-links a:hover {
+  background-color: var(--color-bg);
+  border-color: var(--color-bg);
+  color: var(--color-orange);
+  transform: rotate(-2deg) translateY(-3px);
+  opacity: 1;
 }
+.about-links a:active { transform: translateY(0); opacity: .7; }
 
-.footer-inner {
-  max-width: 1400px;
-  margin: 0 auto;
+/* === FOOTER === */
+.site-footer {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  padding: 2.5rem var(--pad-x);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  text-align: center;
+  gap: 1.25rem;
+  border-top: 4px solid var(--color-pink);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Halftone dots on footer — pink top-right corner */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 220px; height: 220px;
+  background-image: radial-gradient(var(--color-pink) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  opacity: .1;
+  pointer-events: none;
+}
+.site-footer::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 160px; height: 160px;
+  background-image: radial-gradient(var(--color-orange) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  opacity: .1;
+  pointer-events: none;
+}
+
+.footer-copy {
+  font-size: .78rem;
+  line-height: 1.65;
+  opacity: .6;
+  max-width: 60ch;
 }
 
 .footer-links {
   display: flex;
-  gap: 2.5rem;
   flex-wrap: wrap;
+  gap: 1.5rem;
   justify-content: center;
 }
 .footer-links a {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--paper);
+  font-size: .82rem;
+  font-weight: 500;
+  opacity: .65;
 }
-.footer-links a:visited { color: var(--paper); }
-.footer-links a:hover   { color: var(--pink); text-decoration: none; }
-.footer-links a:active  { color: var(--orange); }
+.footer-links a:link,
+.footer-links a:visited { color: var(--color-bg); }
+.footer-links a:hover   { color: var(--color-pink);   opacity: 1; }
+.footer-links a:active  { color: var(--color-orange);  opacity: 1; }
 
-footer p { font-size: 0.76rem; opacity: 0.45; color: var(--paper); max-width: 600px; }
+/* === REFLECTION PAGE === */
 
-/* =====================================================
-   REFLECTION PAGE
-   ===================================================== */
+/* Reflection hero sits on cream bg — override hero's cream text to dark */
+.reflection-hero .hero-name {
+  color: var(--color-text);
+  text-shadow:
+    -3px -2px 0 rgba(255, 107, 173, .6),
+     4px  3px 0 rgba(255, 146, 70, .5);
+}
+.reflection-hero .hero-title {
+  color: var(--color-text);
+  opacity: .5;
+  letter-spacing: .04em;
+  text-transform: none;
+  font-size: clamp(.9rem, 1.6vw, 1.05rem);
+  max-width: 44ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .reflection-hero {
-  background: var(--orange);
-  color: var(--paper);
-  padding: 5rem 2rem 4rem;
-  border-bottom: var(--border);
+  text-align: center;
+  padding: 5rem var(--pad-x) 2.5rem;
+  position: relative;
+  overflow: hidden;
 }
-.reflection-hero h1 {
-  font-size: clamp(3.5rem, 12vw, 10rem);
-  color: var(--paper);
+
+.reflection-hero > * { position: relative; z-index: 1; }
+
+/* Halftone dots on reflection hero — pink top-right, orange bottom-left */
+.reflection-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 280px; height: 280px;
+  background-image: radial-gradient(var(--color-pink) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  opacity: .15;
+  pointer-events: none;
+  z-index: 0;
 }
-.reflection-hero p { margin-top: 1rem; font-size: 1rem; opacity: 0.75; }
+.reflection-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 200px; height: 200px;
+  background-image: radial-gradient(var(--color-orange) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  opacity: .15;
+  pointer-events: none;
+  z-index: 0;
+}
 
-.page-hero-inner { max-width: 800px; margin: 0 auto; }
-
-.reflection-body { max-width: 760px; margin: 0 auto; padding: 4rem 2rem 6rem; }
-
-.reflection-section { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1.5px solid var(--black); }
-.reflection-section:last-child { border-bottom: none; margin-bottom: 0; }
-
-.reflection-label {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.72rem;
+.eyebrow {
+  display: inline-block;
+  font-size: .7rem;
+  letter-spacing: .22em;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--orange);
-  margin-bottom: 0.4rem;
+  color: var(--color-pink);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
 }
-.reflection-section h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); margin-bottom: 1.25rem; }
-.reflection-section p  { font-size: 1.05rem; line-height: 1.75; }
-.reflection-section p + p { margin-top: 1rem; }
 
-/* =====================================================
-   LEARNING LOG PAGE
-   ===================================================== */
-.log-hero {
-  background: var(--yellow);
-  color: var(--black);
-  padding: 4rem 2rem 3rem;
-  border-bottom: var(--border);
+.reflection-entries {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem var(--pad-x) 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
-.log-hero h1 { font-size: clamp(3rem, 10vw, 7.5rem); }
 
-.ink-eyebrow {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.75rem;
+.reflection-entry {
+  padding-left: 1.75rem;
+  border-left: 4px solid var(--color-pink);
+}
+
+.entry-num {
+  font-size: .7rem;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  opacity: 0.5;
-  margin-bottom: 0.5rem;
+  color: var(--color-orange);
+  font-weight: 600;
+  margin-bottom: .4rem;
 }
 
-.log-body { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 6rem; }
-.log-week { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1.5px solid var(--black); }
-.log-week:last-child { border-bottom: none; }
-.log-week h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); margin-bottom: 1rem; }
-.log-week p, .log-week li { font-size: 1rem; line-height: 1.7; }
-.log-week ul { padding-left: 1.5rem; margin-top: 0.5rem; }
-
-/* =====================================================
-   SCROLL REVEAL
-   HOW IT WORKS (for your presentation):
-   js/scroll-reveal.js watches every .reveal element with
-   an IntersectionObserver. Each one starts shifted down
-   40px and transparent; when it scrolls into view, JS
-   adds .is-visible, which triggers this transition back
-   to translateY(0)/opacity:1 — a soft print "settling
-   into place" as you scroll, instead of popping in flat.
-   .reveal-delay-N staggers cards/columns so they don't
-   all land in the same instant. prefers-reduced-motion
-   disables the animation entirely for visitors who've
-   asked their OS to reduce motion.
-   ===================================================== */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.reflection-entry h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.1rem;
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 0.08s; }
-.reveal-delay-2 { transition-delay: 0.16s; }
-.reveal-delay-3 { transition-delay: 0.24s; }
-.reveal-delay-4 { transition-delay: 0.32s; }
 
+.reflection-entry p {
+  font-size: 1.05rem;
+  line-height: 1.82;
+  max-width: 62ch;
+  orphans: 3;
+  widows: 3;
+  text-wrap: pretty;
+}
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+  .nav { gap: 1rem; }
+  .nav-links { gap: 1.25rem; }
+  .nav-links a { font-size: .75rem; }
+
+  .hero { padding: 3rem var(--pad-x); }
+  .hero-name-indent { padding-left: 1.5rem; }
+  .hero-divider { width: 80%; }
+
+  .project-grid { grid-template-columns: 1fr; }
+
+  /* No rotation on mobile — too cramped */
+  .project-card {
+    transform: none !important;
+    transition-delay: 0s !important;
+  }
+
+  .about-inner {
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+  .about-photo-wrap { width: 200px; align-self: center; }
+  .about-bio        { max-width: 100%; }
+
+  .reflection-entries { padding-bottom: 4rem; gap: 3rem; }
+}
+
+@media (max-width: 480px) {
+  .nav          { gap: .5rem; padding: .65rem var(--pad-x); }
+  .nav-logo     { font-size: 1.8rem; }
+  .nav-links    { gap: .6rem; }
+  .nav-links a  { font-size: .68rem; letter-spacing: .05em; }
+  .footer-links { gap: 1rem; }
+  .about-links  { gap: .5rem; }
+}
+
+/* === SECTION TITLE ACCENT LINE === */
+.section-title::after {
+  content: '';
+  display: block;
+  height: 5px;
+  width: 70%;
+  background-color: var(--color-pink);
+  margin-top: .35rem;
+  transform: rotate(-1.5deg);
+  border-radius: 3px;
+}
+.about .section-title::after { background-color: var(--color-yellow); }
+
+/* === REDUCED MOTION === */
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  html { scroll-behavior: auto; }
+
+  .star { animation: none; opacity: 1; }
+
+  [data-animate] {
     opacity: 1;
-    transform: none;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .project-card,
+  .nav-logo,
+  .about-links a,
+  .card-thumb img,
+  .card-cta {
     transition: none;
   }
-}
-
-/* =====================================================
-   RESPONSIVE — max-width: 700px
-
-   • Hero: stacks to one column, photo moves below text,
-     star scatter thins out so it doesn't crowd the type
-   • Projects grid: 1 column, card tilt removed
-   • About: stacks to one column (photo on top, text below)
-   • Nav: hide two links
-   ===================================================== */
-@media (max-width: 700px) {
-
-  /* Hero */
-  .hero { padding: 2.5rem 1.5rem 3rem; }
-  .hero-inner { grid-template-columns: 1fr; gap: 2rem; text-align: left; }
-  .hero-photo { order: -1; max-width: 220px; justify-self: flex-start; }
-  .hero-stars .md, .hero-stars .alt { display: none; }
-  .hero-stars .xl { width: 170px; height: 170px; top: -36px; right: -36px; }
-  .hero-stars .sm { width: 64px; height: 64px; bottom: 6%; right: 12%; }
-
-  /* Projects */
-  .projects-grid { grid-template-columns: 1fr; padding: 1.5rem; gap: 1.25rem; }
-  .projects-header { flex-direction: column; gap: 0.25rem; padding: 2.5rem 1.5rem 2rem; }
-  .poster-card,
-  .poster-card:nth-child(even) { transform: rotate(0deg); }
-  .poster-card:hover { transform: translateY(-4px); }
-  .poster-footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-
-  /* About */
-  .about-inner { grid-template-columns: 1fr; min-height: auto; padding: 2.5rem 1.5rem; gap: 2rem; }
-  .about-photo { max-width: 200px; }
-  .about-star { display: none; }
-
-  /* Nav */
-  nav ul { gap: 1.25rem; }
-  nav ul li:nth-child(3),
-  nav ul li:nth-child(4) { display: none; }
 }
