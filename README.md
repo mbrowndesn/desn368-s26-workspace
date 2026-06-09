@@ -20,6 +20,7 @@
 | Orange | `#FF9246` |
 | Yellow | `#FFD023` |
 | Background | `#FBF5EC` |
+| Text | `#1A1008` |
 
 ---
 
